@@ -1,0 +1,50 @@
+<div class="row mx-0 bg-white">
+	<!--	<div class="col-md-4 text-center">-->
+	<!--		<span ng-if="form.image == null">-->
+	<!--			<img ng-src="{{'/assets/images/cloud-upload.jpg'}}" style="max-width: 100%; margin-top: 5rem">-->
+	<!--		</span>-->
+	<!--		<span ng-if="form.image != null">-->
+	<!--			<img ng-src="{{'/assets/images/'+form.image}}" style="max-width: 100%; margin-top: 5rem">-->
+	<!--		</span>-->
+	<!--	</div>-->
+	<div class="col-md-12">
+		<form class="form p-3">
+			<div class="form-group row">
+				<label class="form-label">Id</label>
+				<input type="text" class="form-control" ng-model="form.id" placeholder="Nhập ID">
+			</div>
+			<div class="form-group row">
+				<label class="form-label">Người mua</label>
+				<input type="text" class="form-control" ng-model="form.account.username" placeholder="Nhập tên">
+			</div>
+			<div class="form-group row">
+				<label class="form-label">Ngày tạo</label>
+				<input type="date" class="form-control" ng-model="form.createDate" placeholder="2022-01-01">
+			</div>
+			<div class="form-group row">
+				<label class="form-label">Địa chỉ</label>
+				<input type="text" class="form-control" ng-model="form.address" placeholder="Nhập địa chỉ">
+			</div>
+			<div class="form-group row">
+				<label class="form-label">Trạng thái</label>
+				<select ng-model="form.status" class="custom-select">
+					<option ng-repeat="status in orderStatuses" ng-value="status">{{status.displayName}}</option>
+				</select>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="card-header text-center">
+	<button ng-click="create()" class="btn btn-primary">
+		<i class="fas fa-plus"></i> Thêm
+	</button>
+	<button ng-click="update()" class="btn btn-success">
+		<i class="far fa-save"></i> Cập nhật
+	</button>
+	<button ng-click="delete(form)" class="btn btn-danger">
+		<i class="fas fa-trash"></i> Xóa
+	</button>
+	<button ng-click="reset()" class="btn btn-secondary">
+		<i class="fas fa-redo"></i> Đặt lại
+	</button>
+</div>

@@ -1,0 +1,77 @@
+<div class="row mx-0 bg-white" ng-if="items">
+	<div class="col-12 py-3">
+		<table class="table table-collapse table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Tên người mua</th>
+					<th>Ngày đặt hàng</th>
+					<th>Địa chỉ</th>
+					<th>Trạng thái đơn hàng</th>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td class="align-center">{{item.id}}</td>
+					<td class="align-center">{{item.account.username}}</td>
+					<td class="align-center">{{item.createDate | date:'dd/MM/yyyy'}}</td>
+					<td class="align-center">{{item.address}}</td>
+					<td class="align-center">
+						<span ng-if="item.status === 'PROCESSING'">Đang xử lý</span>
+						<span ng-if="item.status === 'CONFIRMED'">Đã xử lý</span>
+						<span ng-if="item.status === 'CANCELED'">Hủy đơn</span>
+					</td>
+					<td class="align-center">
+						<div class="btn-group btn-group-xs">
+							<button ng-click="edit(item)" class="btn btn-icon" ng-if="item.status !== 'CANCELED'">
+								<i class="fa fa-xs fa-pen"></i>
+							</button>
+							<button ng-click="updateStatus(item, 'PROCESSING')" class="btn btn-success"
+								ng-if="item.status === 'PROCESSING' && item.status !== 'CANCELED'">
+								<i class="fa fa-xs fa-check"></i> Đang xử lý
+							</button>
+							<button ng-click="updateStatus(item, 'CONFIRMED')" class="btn btn-warning"
+								ng-if="item.status === 'CONFIRMED' && item.status !== 'CANCELED'">
+								<i class="fa fa-xs fa-history"></i> Đã xử lý
+							</button>
+							<button ng-click="updateStatus(item, 'CANCELED')" class="btn btn-danger"
+								ng-if="item.status === 'CANCELED'">
+								<i class="fa fa-xs fa-ban"></i> Hủy đơn
+							</button>
+							<!--							Bổ sung điều kiện để ẩn nút xóa khi ở trạng thái 'Đã xử lý' -->
+							<!--							<button ng-click="delete(item)" class="btn btn-danger" ng-if="item.status !== 'CONFIRMED'">-->
+							<!--								<i class="fa fa-xs fa-times"></i>-->
+							<!--							</button>-->
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Các nút phân trang -->
+<!--<div class="card-header text-center">-->
+<!--	<button ng-click="pager.first()" class="btn btn-danger">-->
+<!--		<i class="fas fa-arrow-to-left"></i>-->
+<!--	</button>-->
+<!--	<button ng-click="pager.prev()" class="btn btn-primary">-->
+<!--		<i class="fas fa-arrow-left"></i>-->
+<!--	</button>-->
+<!--	<button class="btn btn-success">{{pager.page + 1}} of {{pager.count?pager.count:'1'}}</button>-->
+<!--	<button ng-click="pager.next()" class="btn btn-primary">-->
+<!--		<i class="fas fa-arrow-right"></i>-->
+<!--	</button>-->
+<!--	<button ng-click="pager.last()" class="btn btn-danger">-->
+<!--		<i class="fas fa-arrow-to-right"></i>-->
+<!--	</button>-->
+<!--</div>-->
